@@ -51,7 +51,7 @@ foreach ($oldData as $k => $d) {
 }
 
 $newData = (array) $newData;
-if ($newData != null) {
+if (!empty($newData)) {
   $data = new \stojg\recommend\Data($newData);
   $recommendations = $data->recommend($id_user, new \stojg\recommend\strategy\Manhattan());
 }
@@ -142,7 +142,7 @@ function array_unique_key($input, $keys)
             <ul class="list-group">
 
               <?php
-              if ($recommendations != null) {
+              if (!empty($recommendations)) {
                 foreach ($recommendations  as $rec) { ?>
                   <li class="list-group-item list-group-item-danger mb-2 text-dark" style="font-weight: 700;"><?= $rec['key'] ?></li>
                 <?php }
