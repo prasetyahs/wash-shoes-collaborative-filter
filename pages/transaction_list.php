@@ -144,7 +144,11 @@ if ($_SESSION['hak_akses'] == 'user') {
 
 <!-- The Modal -->
 
-
+<div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+</div>
 <script>
   // Get the modal
   var modal = document.getElementById("myModal");
