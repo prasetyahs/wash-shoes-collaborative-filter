@@ -20,38 +20,38 @@ $sql = "SELECT tb_rating.rate,transaksi.id_user,layanan.nama_layanan FROM tb_rat
 $exc = mysqli_query($con, $sql);
 $result = mysqli_fetch_all($exc, MYSQLI_ASSOC);
 
-
-$oldData = groupingArray($result);
-
-$newData =  new stdClass;
-foreach ($oldData as $k => $d) {
-  $tmp = new stdClass;
-  foreach ($d as $kl => $dl) {
-    $nama_layanan = $dl['nama_layanan'];
-    $rate  = $dl['rate'];
-    if (property_exists($tmp, $nama_layanan)) {
-      $n_same = 1;
-      foreach ($d as $kt => $dt) {
-        $nl = $dt['nama_layanan'];
-        $r  = $dt['rate'];
-        if (property_exists($tmp, $nl)) {
-          ++$n_same;
-          $tmp->$nama_layanan = ($tmp->$nama_layanan + $r);
-          unset($oldData[$k][$kt]);
+if (!empty($result)) {
+  $oldData = groupingArray($result);
+  $newData =  new stdClass;
+  foreach ($oldData as $k => $d) {
+    $tmp = new stdClass;
+    foreach ($d as $kl => $dl) {
+      $nama_layanan = $dl['nama_layanan'];
+      $rate  = $dl['rate'];
+      if (property_exists($tmp, $nama_layanan)) {
+        $n_same = 1;
+        foreach ($d as $kt => $dt) {
+          $nl = $dt['nama_layanan'];
+          $r  = $dt['rate'];
+          if (property_exists($tmp, $nl)) {
+            ++$n_same;
+            $tmp->$nama_layanan = ($tmp->$nama_layanan + $r);
+            unset($oldData[$k][$kt]);
+          }
         }
+        // $tmp->$nama_layanan = number_format(($tmp->$nama_layanan / $n_same), 1, '.', '');
+        $tmp->$nama_layanan = sprintf("%.2f", ($tmp->$nama_layanan / $n_same));
+      } else {
+        $tmp->$nama_layanan = $rate;
       }
-      // $tmp->$nama_layanan = number_format(($tmp->$nama_layanan / $n_same), 1, '.', '');
-      $tmp->$nama_layanan = sprintf("%.2f", ($tmp->$nama_layanan / $n_same));
-    } else {
-      $tmp->$nama_layanan = $rate;
+      unset($oldData[$k][$kl]);
     }
-    unset($oldData[$k][$kl]);
+    $newData->$k = (array) $tmp;
   }
-  $newData->$k = (array) $tmp;
 }
 
 $newData = (array) $newData;
-if (!empty($newData)) {
+if (!empty($newData) && array_key_exists($id_user, $newData)) {
   $data = new \stojg\recommend\Data($newData);
   $recommendations = $data->recommend($id_user, new \stojg\recommend\strategy\Manhattan());
 }
