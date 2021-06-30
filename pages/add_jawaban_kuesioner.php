@@ -10,4 +10,4 @@ for ($i = 1; $i <= $row; $i++) {
     $query = "INSERT INTO tb_jawaban_kuesioner (id_kuesioner,id_user,jawaban) VALUES ($i,$user_id,'$result')";
     $ex = mysqli_query($con, $query);
 }
-echo "<script>alert('Berhasil Menyiman kuesioner,Terimakasih atas Jawabannya'); window.location.href = 'kuesioner.php';</script>";
+echo "<script>alert('Berhasil Menyiman kuesioner,Terimakasih atas Jawabannya'); window.location.href = 'transaction_list.php';</script>";

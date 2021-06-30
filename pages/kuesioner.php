@@ -34,6 +34,7 @@ require_once 'layout/sidebar.php';
                                     <tr>
                                         <th>No</th>
                                         <th>Pertanyaan</th>
+                                        <th>Action</th>
                                 </thead>
                                 <tbody>
                                     <?php
@@ -46,6 +47,12 @@ require_once 'layout/sidebar.php';
                                         <tr>
                                             <td><?= $no++ ?>.</td>
                                             <td><?= $dt['pertanyaan'] ?></td>
+                                            <td>
+                                                <div class="col-12">
+                                                    <a href="delete_kuesioner.php?id_kuesioner=<?= $dt['id_kuesioner'] ?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                                    <a data-toggle="modal" onclick="getIDKuesioner('<?= $dt['id_kuesioner'] ?>')" data-target="#modalEditKuesioner" href="/edit_kuesioner" class="btn btn-warning text-white"><i class="fa fa-edit"></i></a>
+                                                </div>
+                                            </td>
                                         </tr>
                                     <?php  } ?>
                                 </tbody>
