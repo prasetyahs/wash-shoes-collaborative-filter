@@ -55,29 +55,7 @@
   });
 </script>
 
-<div class="modal fade " id="modalEditKuesioner" tabindex="-1" role="dialog" aria-labelledby="modalEditKuesionerLabel" aria-hidden="true">
-  <div class="modal-dialog	" role="document">
-    <form action="edit_kuesioner.php" method="post">
-      <div class="modal-content">
-        <div class="modal-header justify-content-center">
-          <h5 class="modal-title" id="modalEditKuesionerLabel">Edit Data</h5>
-        </div>
-        <div class="modal-body">
-          <div class="col-12">
-            <div class="form-group">
-              <label for="question">Pertanyaan</label>
-              <input type="text" class="form-control" id="question" name="question" required>
-              <input type="hidden" class="form-control" id="id_kuesioner" name="id_kuesioner" required>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" id="close" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-          <button type="submit" class="btn btn-success">Simpan</button>
-        </div>
-    </form>
-  </div>
-</div>
+
 
 
 <div class="modal fade" id="modalRating" tabindex="-1" role="dialog" aria-labelledby="modalRatingLabel" aria-hidden="true">

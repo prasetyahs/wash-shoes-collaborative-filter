@@ -143,7 +143,6 @@ if ($_SESSION['hak_akses'] == 'user') {
 <!-- /.content-wrapper -->
 
 <!-- The Modal -->
-
 <div id="myModal" class="modal">
   <span class="close">&times;</span>
   <img class="modal-content" id="img01">
